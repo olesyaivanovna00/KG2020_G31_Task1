@@ -1,12 +1,22 @@
 package com.company;
 
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Point2D;
+import java.awt.geom.RoundRectangle2D;
 
 public class Lighthouse implements Draw{
     int x;
     int y;
     int height;
     int width;
+
+    protected Point2D point;
+
+    protected Point2D mRadius;
+
+    protected Color mPointColor, mBackgroundColor;
+
 
     public Lighthouse(int x, int y, int height, int width) {
         this.x = x;
@@ -68,8 +78,8 @@ public class Lighthouse implements Draw{
         //gr.setColor(Color.darkGray);
         for (int i = 0; i < 5; i++) {
 
-            int[] trapezeX = { x - i * width / 15, x + 3 * width / 5 + i * width / 15,
-                    x + 3 * width / 5 + (i + 1) * width / 15, x - (i + 1) * width / 15
+            int[] trapezeX = { x - i * width / 25, x + 3 * width / 5 + i * width / 25,
+                    x + 3 * width / 5 + (i + 1) * width / 25, x - (i + 1) * width / 25
             };
 
             int[] trapezeY = {y + i * height / 7, y + i * height / 7,
@@ -79,17 +89,32 @@ public class Lighthouse implements Draw{
 //                              x - (i + 1) * width / 7, x + 3 * width / 5 + (i + 1) * width / 15};
 //            int[] trapezeY = {y + i * height / 7, y + i * height / 7,
 //                             y + (i + 1) * height, y + (i + 1) * height};
-
             if (i % 2 == 0) {
-                gr.setColor(new Color(255,255,255,0));
-                gr.setStroke() 
+                gr.setColor(new Color(0,0,0,100));
+
             } else {
                 gr.setColor(Color.darkGray);
             }
 
             gr.fillPolygon(trapezeX, trapezeY, 4);
 
+
+            Color startColor = new Color (255, 255,0, 100);
+            Color endColor = new Color(255, 255,0, 0);
+            int startX = 10, startY = 20, endX = 100, endY = 100;
+
+
+            //GradientPaint gradient = new GradientPaint(startX, startY, startColor, endX, endY, endColor);
+            RoundRectangle2D r = new RoundRectangle2D.Float(5, 5, 150, 150, 25,
+                    25);
+
+            gr.setPaint();
+
+            gr.fill(new Ellipse2D.Double(20,20,400,400));
         }
 
+
+
     }
+    
 }

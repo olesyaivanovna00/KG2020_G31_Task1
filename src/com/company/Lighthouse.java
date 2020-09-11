@@ -104,11 +104,10 @@ public class Lighthouse implements Draw{
             int startX = 10, startY = 20, endX = 100, endY = 100;
 
 
-            //GradientPaint gradient = new GradientPaint(startX, startY, startColor, endX, endY, endColor);
+            GradientPaint gradient = new GradientPaint(startX, startY, startColor, endX, endY, endColor);
             RoundRectangle2D r = new RoundRectangle2D.Float(5, 5, 150, 150, 25,
                     25);
-
-            gr.setPaint();
+            gr.setPaint(gradient);
 
             gr.fill(new Ellipse2D.Double(20,20,400,400));
         }

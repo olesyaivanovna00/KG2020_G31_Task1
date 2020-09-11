@@ -13,10 +13,13 @@ public class DrawPanel extends JPanel {
         //drawSun(gr, 400, 350, 50, 1000, 60, Color.pink);
 
         Boat b = new Boat(100, 400, 200, 200);
-        b.draw(gr);
+        //b.draw(gr);
 
         Lighthouse l = new Lighthouse(400, 100, 500, 300);
-        l.draw(gr);
+        //l.draw(gr);
+
+        Sea s = new Sea(400, 400, 700, 30);
+        s.draw(gr);
     }
 
     public static void drawSun(Graphics2D gr, int x, int y, int r, int R, int n, Color c){

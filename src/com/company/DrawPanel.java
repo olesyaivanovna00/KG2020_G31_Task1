@@ -12,14 +12,22 @@ public class DrawPanel extends JPanel {
 
         //drawSun(gr, 400, 350, 50, 1000, 60, Color.pink);
 
-        Boat b = new Boat(100, 400, 200, 200);
-        //b.draw(gr);
 
-        Lighthouse l = new Lighthouse(400, 100, 500, 300);
-        //l.draw(gr);
+        Sea sea = new Sea(getHeight(), getWidth());
+        sea.draw(gr);
 
-        Sea s = new Sea(400, 400, 700, 30);
-        s.draw(gr);
+        Sky sky = new Sky(getHeight() / 3, getWidth());
+        sky.draw(gr);
+
+        Boat boat = new Boat(100, 400, 200, 200);
+        boat.draw(gr);
+
+        Lighthouse lighthouse = new Lighthouse(3 * getWidth() / 4, getHeight() / 6, (int) (getHeight() * 0.75), getWidth() / 4);
+        lighthouse.draw(gr);
+
+        Rocks rock = new Rocks(6 * getWidth() / 10, 2 * getHeight() / 3, getHeight() / 4, getWidth() / 4);
+        rock.draw(gr);
+
     }
 
     public static void drawSun(Graphics2D gr, int x, int y, int r, int R, int n, Color c){

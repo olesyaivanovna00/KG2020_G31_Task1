@@ -1,9 +1,7 @@
 package com.company;
 
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Point2D;
-import java.awt.geom.RoundRectangle2D;
+
 
 public class Lighthouse implements Draw{
     int x;
@@ -11,11 +9,6 @@ public class Lighthouse implements Draw{
     int height;
     int width;
 
-    protected Point2D point;
-
-    protected Point2D mRadius;
-
-    protected Color mPointColor, mBackgroundColor;
 
 
     public Lighthouse(int x, int y, int height, int width) {
@@ -27,10 +20,31 @@ public class Lighthouse implements Draw{
 
     @Override
     public void draw(Graphics2D gr) {
-        drawLighthouse(gr, x, y, height, width);
+        drawRoof(gr, x, y, height, width);
+        drawPattern(gr, x, y);
+        light(gr, x, y);
+        cubicle(gr, x, y, height, width);
     }
 
-    private void drawLighthouse(Graphics2D gr, int x, int y, int height, int width){
+    private void cubicle(Graphics2D gr, int x, int y, int height, int width){
+        int x0 = x + width / 5;
+        int y0 = y + height / 7;
+
+        gr.setColor(Color.DARK_GRAY);
+        gr.setStroke(new BasicStroke(width / 100, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+        gr.drawRect(x0, y0,3 * width / 5, height / 7);
+        int n = 7;
+        int x1 = 3 * width / (5 * n);
+
+        for (int i = 0; i < n; i++) {
+            gr.drawLine(x0 + i * x1, y0, x0 + i * x1, y0 + height / 7);
+        }
+
+
+    }
+
+
+    private void drawRoof(Graphics2D gr, int x, int y, int height, int width){
         gr.setColor(Color.DARK_GRAY);
 
         int ax = x + width / 2;
@@ -39,59 +53,28 @@ public class Lighthouse implements Draw{
         int by = y + height / 7;
         int cx = x + 4 * width / 5;
         int cy = y + height /7;
-        int dx = x + width / 5;
-        int dy = y + 2 * height / 7;
-        int ex = x + 4 * width/ 5;
-        int ey = y + 2* height / 7;
-        int fx = x;
-        int fy = y + height;
-        int gx = x + width;
-        int gy = y + height;
 
-        //крыша
         int[] triangleX = {bx, ax, cx};
         int[] triangleY = {by, ay, cy};
         gr.fillPolygon(triangleX, triangleY, 3);
 
-        //трапеция
-        gr.setColor(Color.orange);
-        gr.setStroke(new BasicStroke(2));
-        int[] trapezeX = {dx, ex, gx, fx};
-        int[] trapezeY = {dy, ey, gy, fy};
-        gr.setStroke(new BasicStroke(4));
-
-        gr.fillPolygon(trapezeX, trapezeY, 4);
-        gr.setColor(Color.yellow);
-
-
-        //то откуда светит свет
-        gr.setColor(Color.black);
-        gr.setStroke(new BasicStroke(2));
-        gr.drawRect(bx, by,3 * width / 5, height / 7);
-
-        drawPattern(gr, dx, dy);
-
     }
 
     private void drawPattern(Graphics2D gr, int x, int y){
-
-        //gr.setColor(Color.darkGray);
+        int dx = x + width / 5;
+        int dy = y + 2 * height / 7;
         for (int i = 0; i < 5; i++) {
 
-            int[] trapezeX = { x - i * width / 25, x + 3 * width / 5 + i * width / 25,
-                    x + 3 * width / 5 + (i + 1) * width / 25, x - (i + 1) * width / 25
+            int[] trapezeX = { dx - i * width / 25, dx + 3 * width / 5 + i * width / 25,
+                    dx + 3 * width / 5 + (i + 1) * width / 25, dx - (i + 1) * width / 25
             };
 
-            int[] trapezeY = {y + i * height / 7, y + i * height / 7,
-                    y + (i + 1) * height / 7, y + (i + 1) * height / 7
+            int[] trapezeY = {dy + i * height / 7, dy + i * height / 7,
+                    dy + (i + 1) * height / 7, dy + (i + 1) * height / 7
             };
-//            int[] trapezeX = {x - i * width / 7, x + 3 * width / 5 + i * width / 15,
-//                              x - (i + 1) * width / 7, x + 3 * width / 5 + (i + 1) * width / 15};
-//            int[] trapezeY = {y + i * height / 7, y + i * height / 7,
-//                             y + (i + 1) * height, y + (i + 1) * height};
+
             if (i % 2 == 0) {
-                gr.setColor(new Color(0,0,0,100));
-
+                gr.setColor(new Color(205,205,205));
             } else {
                 gr.setColor(Color.darkGray);
             }
@@ -99,21 +82,35 @@ public class Lighthouse implements Draw{
             gr.fillPolygon(trapezeX, trapezeY, 4);
 
 
-            Color startColor = new Color (255, 255,0, 100);
-            Color endColor = new Color(255, 255,0, 0);
-            int startX = 10, startY = 20, endX = 100, endY = 100;
 
-
-            GradientPaint gradient = new GradientPaint(startX, startY, startColor, endX, endY, endColor);
-            RoundRectangle2D r = new RoundRectangle2D.Float(5, 5, 150, 150, 25,
-                    25);
-            gr.setPaint(gradient);
-
-            gr.fill(new Ellipse2D.Double(20,20,400,400));
         }
 
-
-
     }
+
+    private void light(Graphics2D gr, int x, int y){
+        int x0 = x + (int) (0.5 * width);
+        int y0 = y + 3 * height / 14;
+        //int x1 = 0;
+        int y1 = y + height / 7;
+        //int x2 = 0;
+        int y2 = y + 2 * height / 7;
+
+        int[] xPoints = {x0, 0, 0};
+        int[] yPoints = {y0, y1, y2};
+
+        Color startColor = new Color (255,251,1);
+        Color endColor = new Color(255,251,1, 0);
+
+
+
+        GradientPaint gradient = new GradientPaint(x0, y0, startColor, 0, (y2 + y1) / 2, endColor);                    gr.setPaint(gradient);
+        gr.setPaint(gradient);
+        gr.fillPolygon(xPoints, yPoints, 3);
+
+
+
+        gr.setColor(startColor);
+        gr.fillRect(x0 - 3*width / 20, y + height / 7, 3*width / 10, height / 7);
+     }
     
 }

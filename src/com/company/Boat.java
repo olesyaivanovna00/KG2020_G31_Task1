@@ -18,44 +18,52 @@ public class Boat implements Draw{
     private void boat(Graphics2D gr, int x, int y, int height, int width){
         gr.setColor(new Color(170,102,44));
 
-        int x1 = x + width;
-        int y1 = y;
-        int x2 = x1 - width / 5;
-        int y2 = y + height / 3;
-        int x3 = x + width / 5;
+        int x1 = x;
+        int y1 = y + 6 * height / 10;
+        int x2 = x1 + width / 6;
+        int y2 = y + height;
+        int x3 = x + 5 * width / 6;
         int y3 = y2;
-        int[] xDots = {x, x1, x2, x3};
-        int[] yDots = {y, y1, y2, y3};
+        int x4 = x + width;
+        int y4 = y1;
+        int[] xDots = {x1, x2, x3, x4};
+        int[] yDots = {y1, y2, y3, y4};
         gr.fillPolygon(xDots, yDots, 4);
+
+        gr.setColor(new Color(116,48,0));
+        gr.drawPolygon(xDots, yDots, 4);
+
 
     }
 
     private void sail(Graphics2D gr, int x, int y, int height, int width) {
 
-        int sx1 = x + width / 2;
-        int sy1 = y;
-        int sx2 = sx1;
-        int sy2 = y - 2 * height / 3;
-        int sx3 = sx1 - width / 5;
-        int sy3 = (sy1 + sy2) / 2;
-        int[] xDots = {sx1, sx2, sx3};
-        int[] yDots = {sy1, sy2, sy3};
+        int x1 = x + width / 2;
+        int y1 = y + 6 * height / 10;
+        int x2 = x + width / 6;
+        int y2 = (y + y1) / 2;
+        int x3 = x1;
+        int y3 = y;
+        int[] xDots = {x1, x2, x3};
+        int[] yDots = {y1, y2, y3};
 
 
-        gr.setColor(new Color(255,102,102));
+        gr.setColor(new Color(106, 90, 205));
         gr.fillPolygon(xDots, yDots, 3);
+        gr.setColor(new Color(72, 61, 139));
+        gr.drawPolygon(xDots, yDots, 3);
 
     }
 
     private void mast(Graphics2D gr, int x, int y, int height, int width){
-        int sx1 = x + width / 2;
-        int sy1 = y;
-        int sx2 = sx1;
-        int sy2 = y - 2 * height / 3;
+        int x1 = x + width / 2;
+        int y1 = y + 6 * height / 10;
+        int x2 = x1;
+        int y2 = y;
 
         gr.setStroke(new BasicStroke(width / 60, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-        gr.setColor(new Color(170,102,44));
-        gr.drawLine(sx1, sy1, sx2, sy2);
+        gr.setColor(new Color(116,48,0));
+        gr.drawLine(x1, y1, x2, y2);
     }
 
     private void nameOfBoat(Graphics2D gr, int x, int y, int height, int width){
@@ -63,7 +71,7 @@ public class Boat implements Draw{
 
         Font newFont = new Font("Helvetica", Font.ITALIC, width / 20);
         gr.setFont(newFont);
-        gr.drawString("НАДЕЖДА", x + 3 * width / 5, y + height / 10);
+        gr.drawString("НАДЕЖДА", x + 3 * width / 5,  y + 7 * height / 10);
     }
 
 
@@ -72,8 +80,9 @@ public class Boat implements Draw{
 
     @Override
     public void draw(Graphics2D gr) {
-        mast(gr, x, y, height, width);
+
         sail(gr, x, y, height, width);
+        mast(gr, x, y, height, width);
         boat(gr, x, y, height, width);
         nameOfBoat(gr, x, y, height, width);
 

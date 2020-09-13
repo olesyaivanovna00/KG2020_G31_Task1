@@ -19,9 +19,8 @@ public class DrawPanel extends JPanel {
         Sky sky = new Sky(getHeight() / 3, getWidth());
         sky.draw(gr);
 
-        Boat boat = new Boat(getWidth() / 7, 3 * getHeight() / 4, getHeight() / 3, getWidth() / 3);
+        Boat boat = new Boat(getWidth() / 7, 2 * getHeight() / 5, getHeight() / 3, getWidth() / 3);
         boat.draw(gr);
-
 
 
         Lighthouse lighthouse = new Lighthouse(3 * getWidth() / 4, getHeight() / 6, (int) (getHeight() * 0.75), getWidth() / 4);

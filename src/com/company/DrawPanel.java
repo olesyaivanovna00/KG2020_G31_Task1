@@ -2,6 +2,8 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Arc2D;
+
 import static java.lang.StrictMath.cos;
 import static java.lang.StrictMath.sin;
 
@@ -28,6 +30,8 @@ public class DrawPanel extends JPanel {
 
         Rocks rock2 = new Rocks(7 * getWidth() / 10, 7 * getHeight() / 10, getWidth() - 7 * getWidth() / 10, getHeight() - 7 * getHeight() / 10, new Color(190, 190, 190));
         rock2.draw(gr);
+
+        gr.fill(new Arc2D.Float(240, 150, 80, 60, 0, 90, Arc2D.CHORD));
 
     }
 

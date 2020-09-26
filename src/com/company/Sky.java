@@ -3,23 +3,24 @@ package com.company;
 import java.awt.*;
 
 public class Sky implements Draw{
-    int height;
+    private double height;
+    private double width;
 
-    public Sky(int height, int width) {
+    public Sky(double height, double width) {
         this.height = height;
         this.width = width;
     }
 
-    int width;
+
 
 
     @Override
-    public void draw(Graphics2D gr) {
-        sky(gr, height, width);
+    public void draw(Graphics2D gr, int w, int h) {
+        sky(gr, height * h, width * w);
     }
 
-    private void sky(Graphics2D gr, int height, int width){
+    private void sky(Graphics2D gr, double height, double width){
         gr.setColor(new Color(5,211,255));
-        gr.fillRect(0, 0, width, height);
+        gr.fillRect(0, 0, (int) width,(int) height);
     }
 }

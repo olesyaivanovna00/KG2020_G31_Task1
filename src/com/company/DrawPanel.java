@@ -8,44 +8,38 @@ import static java.lang.StrictMath.cos;
 import static java.lang.StrictMath.sin;
 
 public class DrawPanel extends JPanel {
+    private static Sea sea = new Sea(1, 1);
+    Sky sky = new Sky(0.33, 1);
+    Sun sun = new Sun(0.5, 0.33, 0.1, 1, 20);
+    Boat boat = new Boat(0.14, 0.4, 0.3, 0.3);
+    Lighthouse lighthouse = new Lighthouse(0.75, 0.2, 0.75, 0.25);
+    Rocks rock2 = new Rocks(0.7, 0.7, 0.3, 0.3, new Color(190, 190, 190));
+
+
+
+
+
+
     @Override
     public void paint(Graphics g) {
         Graphics2D gr = (Graphics2D) g;
 
-        //drawSun(gr, 400, 350, 50, 1000, 60, Color.pink);
+        sea.draw(gr, getWidth(), getHeight());
+
+        sky.draw(gr, getWidth(), getHeight());
+
+        sun.draw(gr, getWidth(), getHeight());
+
+        boat.draw(gr, getWidth(), getHeight());
 
 
-        Sea sea = new Sea(getHeight(), getWidth());
-        sea.draw(gr);
+        lighthouse.draw(gr, getWidth(), getHeight());
 
-        Sky sky = new Sky(getHeight() / 3, getWidth());
-        sky.draw(gr);
+        rock2.draw(gr, getWidth(), getHeight());
 
-        Boat boat = new Boat(getWidth() / 7, 2 * getHeight() / 5, getHeight() / 3, getWidth() / 3);
-        boat.draw(gr);
-
-
-        Lighthouse lighthouse = new Lighthouse(3 * getWidth() / 4, getHeight() / 6, (int) (getHeight() * 0.75), getWidth() / 4);
-        lighthouse.draw(gr);
-
-        Rocks rock2 = new Rocks(7 * getWidth() / 10, 7 * getHeight() / 10, getWidth() - 7 * getWidth() / 10, getHeight() - 7 * getHeight() / 10, new Color(190, 190, 190));
-        rock2.draw(gr);
-
-        gr.fill(new Arc2D.Float(240, 150, 80, 60, 0, 90, Arc2D.CHORD));
+//        gr.fill(new Arc2D.Float(240, 150, 80, 60, 0, 90, Arc2D.CHORD));
 
     }
 
-    public static void drawSun(Graphics2D gr, int x, int y, int r, int R, int n, Color c){
-        gr.setColor(c);
-        gr.fillOval(x - r, y - r, 2 * r, 2 * r);
-        double da = 2 * Math.PI / n;
-        for (int i = 0; i < n; i++) {
-            double dx1, dy1, dx2, dy2;
-            dx1 = r * cos(da * i) + x;
-            dy1 = r * sin(da * i) + y;
-            dx2 = R * cos(da * i) + x;
-            dy2 = R * sin(da * i) + y;
-            gr.drawLine((int) dx1, (int)dy1, (int)dx2, (int)dy2);
-        }
-    }
+
 }

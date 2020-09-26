@@ -4,14 +4,14 @@ import java.awt.*;
 
 
 public class Lighthouse implements Draw{
-    int x;
-    int y;
-    int height;
-    int width;
+    private double x;
+    private double y;
+    private double height;
+    private double width;
 
 
 
-    public Lighthouse(int x, int y, int height, int width) {
+    public Lighthouse(double x, double y, double height, double width) {
         this.x = x;
         this.y = y;
         this.height = height;
@@ -19,40 +19,40 @@ public class Lighthouse implements Draw{
     }
 
     @Override
-    public void draw(Graphics2D gr) {
-        drawRoof(gr, x, y, height, width);
-        drawPattern(gr, x, y);
-        light(gr, x, y);
-        cubicle(gr, x, y, height, width);
+    public void draw(Graphics2D gr, int w, int h) {
+        drawRoof(gr, x * w, y * h, height * h, width * w);
+        drawPattern(gr, x * w, y * h, height * h, width * w);
+        light(gr, x * w, y * h, height * h, width * w);
+        cubicle(gr, x * w, y * h, height * h, width * w);
     }
 
-    private void cubicle(Graphics2D gr, int x, int y, int height, int width){
-        int x0 = x + width / 5;
-        int y0 = y + height / 7;
+    private void cubicle(Graphics2D gr, double x, double y, double height, double width){
+        double x0 = x + width / 5;
+        double y0 = y + height / 7;
 
         gr.setColor(Color.DARK_GRAY);
-        gr.setStroke(new BasicStroke(width / 100, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-        gr.drawRect(x0, y0,3 * width / 5, height / 7);
+        gr.setStroke(new BasicStroke((int)(width / 100), BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+        gr.drawRect((int)x0, (int)y0,(int)(3 * width / 5), (int)(height / 7));
         int n = 7;
-        int x1 = 3 * width / (5 * n);
+        int x1 = 3 * (int)width / (5 * n);
 
         for (int i = 0; i < n; i++) {
-            gr.drawLine(x0 + i * x1, y0, x0 + i * x1, y0 + height / 7);
+            gr.drawLine((int)(x0 + i * x1), (int)y0, (int)(x0 + i * x1), (int)(y0 + height / 7));
         }
 
 
     }
 
 
-    private void drawRoof(Graphics2D gr, int x, int y, int height, int width){
+    private void drawRoof(Graphics2D gr, double x, double y, double height, double width){
         gr.setColor(Color.DARK_GRAY);
 
-        int ax = x + width / 2;
-        int ay = y;
-        int bx = x + width / 5;
-        int by = y + height / 7;
-        int cx = x + 4 * width / 5;
-        int cy = y + height /7;
+        int ax = (int)(x + width / 2);
+        int ay = (int)y;
+        int bx = (int)(x + width / 5);
+        int by = (int)(y + height / 7);
+        int cx = (int)(x + 4 * width / 5);
+        int cy = (int)(y + height /7);
 
         int[] triangleX = {bx, ax, cx};
         int[] triangleY = {by, ay, cy};
@@ -60,17 +60,17 @@ public class Lighthouse implements Draw{
 
     }
 
-    private void drawPattern(Graphics2D gr, int x, int y){
-        int dx = x + width / 5;
-        int dy = y + 2 * height / 7;
+    private void drawPattern(Graphics2D gr, double x, double y, double height, double width){
+        int dx = (int)(x + width / 5);
+        int dy = (int)(y + 2 * height / 7);
         for (int i = 0; i < 5; i++) {
 
-            int[] trapezeX = { dx - i * width / 25, dx + 3 * width / 5 + i * width / 25,
-                    dx + 3 * width / 5 + (i + 1) * width / 25, dx - (i + 1) * width / 25
+            int[] trapezeX = { dx - (int)(i * width / 25), (int)(dx + 3 * width / 5 + i * width / 25),
+                    (int)(dx + 3 * width / 5 + (i + 1) * width / 25), (int)(dx - (i + 1) * width / 25)
             };
 
-            int[] trapezeY = {dy + i * height / 7, dy + i * height / 7,
-                    dy + (i + 1) * height / 7, dy + (i + 1) * height / 7
+            int[] trapezeY = {(int)(dy + i * height / 7), (int)(dy + i * height / 7),
+                    (int)(dy + (i + 1) * height / 7), (int)(dy + (i + 1) * height / 7)
             };
 
             if (i % 2 == 0) {
@@ -87,13 +87,13 @@ public class Lighthouse implements Draw{
 
     }
 
-    private void light(Graphics2D gr, int x, int y){
-        int x0 = x + (int) (0.5 * width);
-        int y0 = y + 3 * height / 14;
+    private void light(Graphics2D gr, double x, double y,  double height, double width){
+        int x0 = (int)(x + 0.5 * width);
+        int y0 = (int)(y + 3 * height / 14);
         //int x1 = 0;
-        int y1 = y + height / 7;
+        int y1 = (int)(y + height / 7);
         //int x2 = 0;
-        int y2 = y + 2 * height / 7;
+        int y2 = (int)(y + 2 * height / 7);
 
         int[] xPoints = {x0, 0, 0};
         int[] yPoints = {y0, y1, y2};
@@ -110,7 +110,7 @@ public class Lighthouse implements Draw{
 
 
         gr.setColor(startColor);
-        gr.fillRect(x0 - 3*width / 20, y + height / 7, 3*width / 10, height / 7);
+        gr.fillRect((int)(x0 - 3 * width / 20), (int)(y + height / 7), (int)(3 * width / 10), (int)(height / 7));
      }
     
 }

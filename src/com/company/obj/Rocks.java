@@ -1,4 +1,6 @@
-package com.company;
+package com.company.obj;
+
+import com.company.Draw;
 
 import java.awt.*;
 

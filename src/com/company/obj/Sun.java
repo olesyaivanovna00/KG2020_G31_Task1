@@ -1,4 +1,6 @@
-package com.company;
+package com.company.obj;
+
+import com.company.Draw;
 
 import java.awt.*;
 import java.awt.geom.Arc2D;
@@ -6,7 +8,7 @@ import java.awt.geom.Arc2D;
 import static java.lang.StrictMath.cos;
 import static java.lang.StrictMath.sin;
 
-public class Sun implements Draw{
+public class Sun implements Draw {
     private double x;
     private double y;
     private double r;
@@ -29,7 +31,7 @@ public class Sun implements Draw{
     }
 
     private void drawSun(Graphics2D gr, double x, double y, double r, double R, double n){
-        Color startColor = new Color (246,71,71);
+        Color startColor = new Color (215, 48, 19);
         Color endColor = new Color(246,71,71, 0);
 
         gr.setColor(startColor);

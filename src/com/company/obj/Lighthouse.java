@@ -1,9 +1,11 @@
-package com.company;
+package com.company.obj;
+
+import com.company.Draw;
 
 import java.awt.*;
 
 
-public class Lighthouse implements Draw{
+public class Lighthouse implements Draw {
     private double x;
     private double y;
     private double height;

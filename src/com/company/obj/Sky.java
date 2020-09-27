@@ -1,8 +1,10 @@
-package com.company;
+package com.company.obj;
+
+import com.company.Draw;
 
 import java.awt.*;
 
-public class Sky implements Draw{
+public class Sky implements Draw {
     private double height;
     private double width;
 
@@ -20,7 +22,7 @@ public class Sky implements Draw{
     }
 
     private void sky(Graphics2D gr, double height, double width){
-        gr.setColor(new Color(5,211,255));
+        gr.setColor(new Color(19, 128, 187));
         gr.fillRect(0, 0, (int) width,(int) height);
     }
 }

@@ -1,9 +1,12 @@
-package com.company;
+package com.company.obj;
+
+import com.company.Draw;
 
 import java.awt.*;
 import java.awt.geom.Arc2D;
+import java.awt.geom.CubicCurve2D;
 
-public class Boat implements Draw{
+public class Boat implements Draw {
     private double x;
     private double y;
     private double height;
@@ -71,9 +74,9 @@ public class Boat implements Draw{
     }
 
     private void nameOfBoat(Graphics2D gr, double x, double y, double height, double width){
-        gr.setColor(Color.black);
+        gr.setColor(new Color(116,48,0));
 
-        Font newFont = new Font("Helvetica", Font.ITALIC, (int)(width / 20));
+        Font newFont = new Font("Helvetica", Font.ITALIC, (int)((width * height) / 3200));
         gr.setFont(newFont);
         gr.drawString("НАДЕЖДА", (int)(x + 3 * width / 5),  (int)(y + 7 * height / 10));
     }

@@ -1,6 +1,9 @@
-package com.company;
+package com.company.obj;
+
+import com.company.Draw;
 
 import java.awt.*;
+import java.awt.geom.CubicCurve2D;
 import java.awt.geom.QuadCurve2D;
 
 public class Sea implements Draw {
@@ -15,30 +18,23 @@ public class Sea implements Draw {
     }
 
     private void sea(Graphics2D gr, double height, double width){
-        gr.setColor(new Color(9,157,254));
+        gr.setColor(new Color(5, 113, 184));
         gr.fillRect(0, (int) height / 4, (int) width, (int) height);
     }
 
     private void waves(Graphics2D gr, double height, double width){
-        gr.setColor(new Color(65, 105, 225));
-        QuadCurve2D.Double curve = new QuadCurve2D.Double(200,0,200,100,200,200);
+        gr.setColor(new Color(28, 62, 167));
 
+//        CubicCurve2D c = new CubicCurve2D.Double(0, height , 100, 100, -300, 0, width, height);
+//        gr.fill(c);
 
-        gr.setColor(Color.BLACK);
-        gr.draw(curve);
-
-
-//        for (int i = 0; i < height; i++) {
-//            for ( int x = 0; x < width; x++ ) {
-//                int y;
-//                if (i % 2 == 0) {
-//                    y = (int) ((20 * Math.sin(Math.toRadians(x))) + height - i * 10);
-//                } else {
-//                    y = (int) ((20 * Math.sin(Math.toRadians(x + width / 10))) + height - i * 10);
-//                }
-//                gr.fillOval(x, y, 2, 2);
-//            }
-//        }
+        for (int i = 0; i < height; i++) {
+            for ( int x = 0; x < width; x++ ) {
+                int y;
+                y = (int) ((30 * Math.sin(Math.toRadians(x))) + height - i * 50);
+                gr.fillOval(x, y, 2, 2);
+            }
+        }
 
     }
 

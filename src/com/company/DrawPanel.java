@@ -1,11 +1,9 @@
 package com.company;
 
+import com.company.obj.*;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Arc2D;
-
-import static java.lang.StrictMath.cos;
-import static java.lang.StrictMath.sin;
 
 public class DrawPanel extends JPanel {
     private static Sea sea = new Sea(1, 1);
